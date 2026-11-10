@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+  <rect width="320" height="120" fill="#8e3ccb"/>
+  
+      <polygon points="0,0 120,0 60,90" fill="#a45ee0" opacity=".8"/>
+      <circle cx="250" cy="70" r="64" fill="#6c21a8"/>
+      <circle cx="200" cy="10" r="30" fill="#ffffff" opacity=".14"/>
+      <path d="M0 70 L70 40 L140 95 L210 30 L320 85 V120 H0 Z" fill="#5a1a8c" opacity=".45"/>
+    
+</svg>

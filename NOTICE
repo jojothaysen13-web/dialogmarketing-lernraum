@@ -1,0 +1,35 @@
+Dialogmarketing Lernraum
+========================
+
+License
+-------
+This project is licensed under the GNU General Public License, version 3.
+See the file LICENSE for the full text.
+
+Design
+------
+The visual design (layout, colors, typography, course cards, calendar,
+timeline and quiz presentation) is based on the Moodle Boost theme
+(Moodle 4.x), which is free software under the GNU GPLv3.
+
+  https://github.com/moodle/moodle
+  Theme: theme/boost
+
+The Moodle name and logo are trademarks of the Moodle Trust and are not
+used as the site title or branding of this project. The site is named
+"Dialogmarketing Lernraum". A footer credit reads:
+"Design basiert auf Moodle (GPLv3)".
+
+The stylesheets in css/theme.css were written for this project and are
+not a verbatim copy of Moodle SCSS or CSS from the Moodle repository.
+
+Third-party software
+--------------------
+This distribution includes Bootstrap 4.6.2 (CSS only), licensed under the
+MIT License:
+
+  Copyright (c) 2011-2022 The Bootstrap Authors
+  Copyright (c) 2011-2022 Twitter, Inc.
+  https://github.com/twbs/bootstrap
+
+The MIT license text is included in vendor/BOOTSTRAP-LICENSE.txt.

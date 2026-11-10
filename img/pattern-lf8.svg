@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+  <rect width="320" height="120" fill="#14813e"/>
+  
+      <circle cx="250" cy="20" r="80" fill="#1c9a4d"/>
+      <circle cx="30" cy="100" r="48" fill="#0e5f2d"/>
+      <rect x="90" y="10" width="70" height="70" rx="8" transform="rotate(-16 125 45)" fill="#ffffff" opacity=".12"/>
+      <path d="M0 95 C60 55 120 115 180 75 C230 45 280 90 320 70 V120 H0 Z" fill="#0b4f25" opacity=".5"/>
+    
+</svg>
