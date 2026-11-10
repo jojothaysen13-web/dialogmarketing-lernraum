@@ -1,0 +1,19 @@
+{
+  "stand": "2026-11-10T14:30:00+01:00",
+  "zeitraum": "11.10.–10.11.2026 (letzte 30 Tage, UTC); erste Daten ab 18.10.",
+  "quelle": "Grok-Bot-Nutzungsbericht (Anteile an der gesamten Grok-Bot-Nutzung im Zeitraum)",
+  "plan": "Premium",
+  "wochenlimit_genutzt_prozent": 11.6,
+  "wochenlimit_reset": "So, 15.11.2026, 17:34 Uhr (MEZ)",
+  "bots": [
+    {"name": "Susi", "anteil": 92, "aktivitaet": {"Chats mit Jonathan": 76, "Routinen": 14, "Gruppenchats": 2}},
+    {"name": "Coach / Max", "anteil": 3, "aktivitaet": {"Gruppenchats": 2, "Bot-zu-Bot": 1, "Chats mit Jonathan": 0.5, "Routinen": 0.5}},
+    {"name": "Prüfungscoach / Kim", "anteil": 3, "aktivitaet": {"Gruppenchats": 1, "Routinen": 1, "Chats mit Jonathan": 1, "Bot-zu-Bot": 0.5}},
+    {"name": "Lernvideo", "anteil": 1, "aktivitaet": {"Chats mit Jonathan": 1, "Gruppenchats": 0.5, "Routinen": 0.5}},
+    {"name": "Gelöschte Bots / Sonstige", "anteil": 1, "aktivitaet": {"Chats mit Jonathan": 1}}
+  ],
+  "tage": [
+    ["2026-10-18",2],["2026-10-19",8],["2026-10-20",1],["2026-10-21",1],["2026-10-22",7],["2026-10-23",2],["2026-10-24",1],["2026-10-25",4],["2026-10-26",5],["2026-10-27",3],["2026-10-28",6],["2026-10-29",6],["2026-10-30",2],["2026-10-31",0.5],
+    ["2026-11-01",18],["2026-11-02",2],["2026-11-03",14],["2026-11-04",1],["2026-11-05",1],["2026-11-06",2],["2026-11-07",3],["2026-11-08",1],["2026-11-09",3],["2026-11-10",7]
+  ]
+}

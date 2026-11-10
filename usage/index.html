@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bot-Nutzung – Dashboard</title>
+<meta name="robots" content="noindex">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f5f7fa;color:#1d2125}
+header{background:#0f6cbf;color:#fff;padding:18px 24px}header h1{margin:0;font-size:22px}header p{margin:4px 0 0;opacity:.85;font-size:14px}
+main{max-width:1000px;margin:0 auto;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:18px}
+.card{background:#fff;border:1px solid #dee2e6;border-radius:8px;padding:16px}
+.kpi{font-size:30px;font-weight:700;color:#0f6cbf}.lbl{font-size:13px;color:#6a737b}
+h2{font-size:17px;margin:0 0 12px}
+.row{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:14px}.row .n{width:170px;flex-shrink:0}
+.bar{height:16px;background:#0f6cbf;border-radius:3px;min-width:2px}.v{font-size:13px;color:#495057;white-space:nowrap}
+.sub{margin-left:20px;font-size:13px}.sub .bar{background:#7fb2e5;height:10px}.sub .n{width:150px;color:#495057}
+.days{display:flex;align-items:flex-end;gap:4px;height:200px;border-bottom:1px solid #ccc;padding-top:10px}
+.day{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.day .b{width:100%;background:#0f6cbf;border-radius:3px 3px 0 0}.day .t{font-size:10px;color:#6a737b;margin-top:4px;writing-mode:vertical-rl;transform:rotate(180deg)}
+.day .p{font-size:10px;color:#495057}
+.note{font-size:13px;color:#6a737b;line-height:1.5}
+a{color:#0f6cbf}
+</style></head><body>
+<header><h1>Bot-Nutzung – Oktober/November 2026</h1><p id="zeitraum"></p></header>
+<main>
+<div class="grid">
+ <div class="card"><div class="kpi" id="k-bots"></div><div class="lbl">Bots mit Nutzung</div></div>
+ <div class="card"><div class="kpi" id="k-top"></div><div class="lbl">Größter Anteil</div></div>
+ <div class="card"><div class="kpi" id="k-peak"></div><div class="lbl">Stärkster Tag</div></div>
+ <div class="card"><div class="kpi" id="k-week"></div><div class="lbl">Wochenlimit genutzt (aktuelle Woche)</div></div>
+</div>
+<div class="card" style="margin-bottom:18px"><h2>Anteil pro Bot und Aktivität</h2><div id="bots"></div></div>
+<div class="card" style="margin-bottom:18px"><h2>Anteil pro Tag</h2><div class="days" id="days"></div></div>
+<div class="card note"><h2>Datenquelle</h2><p id="quelle"></p>
+<p>Alle Werte sind <b>Anteile in Prozent</b> an der gesamten Grok-Bot-Nutzung im Zeitraum, keine absoluten Aufrufzahlen. Der Bericht reicht nur 30 Tage zurück, deshalb fehlt der 1.–10. Oktober; Daten gibt es ab dem 18.10. Werte unter 1 % sind hier als 0,5 % dargestellt. Aktive Nutzer und häufigste Anfragen liefert die Quelle nicht.</p>
+<p>Stand: <span id="stand"></span> · Daten: <a href="data.json">data.json</a> · <a href="../">Zurück zum Lernraum</a></p></div>
+</main>
+<script>
+const f=v=>v<1?'&lt;1 %':(String(v).replace('.',',')+' %');
+fetch('data.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+ document.getElementById('zeitraum').textContent='Zeitraum: '+d.zeitraum+' · Plan: '+d.plan;
+ document.getElementById('quelle').textContent=d.quelle+'.';
+ document.getElementById('stand').textContent=new Date(d.stand).toLocaleString('de-DE');
+ const real=d.bots.filter(b=>!b.name.startsWith('Gelöscht'));
+ document.getElementById('k-bots').textContent=real.length;
+ const top=d.bots[0];document.getElementById('k-top').textContent=top.name+' '+top.anteil+' %';
+ const peak=d.tage.reduce((a,b)=>b[1]>a[1]?b:a);
+ document.getElementById('k-peak').textContent=new Date(peak[0]).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'})+' · '+peak[1]+' %';
+ document.getElementById('k-week').textContent=String(d.wochenlimit_genutzt_prozent).replace('.',',')+' %';
+ const max=Math.max(...d.bots.map(b=>b.anteil));let h='';
+ d.bots.forEach(b=>{h+=`<div class="row"><span class="n"><b>${b.name}</b></span><div class="bar" style="width:${b.anteil/max*60}%"></div><span class="v">${f(b.anteil)}</span></div>`;
+  for(const[k,v] of Object.entries(b.aktivitaet))h+=`<div class="row sub"><span class="n">${k}</span><div class="bar" style="width:${v/max*55}%"></div><span class="v">${f(v)}</span></div>`;});
+ document.getElementById('bots').innerHTML=h;
+ const dm=Math.max(...d.tage.map(t=>t[1]));
+ document.getElementById('days').innerHTML=d.tage.map(([t,v])=>`<div class="day" title="${t}: ${v} %"><span class="p">${v<1?'':v}</span><div class="b" style="height:${v/dm*80}%"></div><span class="t">${t.slice(8)}.${t.slice(5,7)}.</span></div>`).join('');
+});
+</script></body></html>
